@@ -186,7 +186,7 @@ async function resume() {
     if (dry) { console.log(lines.join('\n') + '\n'); continue; }
     if (!win) { log('terminal launch not implemented on this platform'); continue; }
     fs.writeFileSync(script, lines.join('\r\n') + '\r\n');
-    spawn('cmd.exe', ['/c', 'start', `"claude ${name}"`, 'powershell.exe', '-NoExit', '-ExecutionPolicy', 'Bypass', '-File', script], { detached: true, stdio: 'ignore' }).unref();
+    spawn('cmd.exe', ['/c', 'start', '"claude"','powershell.exe', '-NoExit', '-ExecutionPolicy', 'Bypass', '-File', script], { detached: true, stdio: 'ignore' }).unref();
     n++;
     await sleep(8000);
   }

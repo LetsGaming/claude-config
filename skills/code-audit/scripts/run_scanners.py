@@ -218,7 +218,7 @@ def run_pip_audit(root, findings, log):
     reqs = find_files(root, {"requirements.txt"})
     args = ["pip-audit", "-f", "json"]
     if reqs:
-        args += ["-r", reqs[0]]
+        args += ["-r", reqs[0], "--no-deps", "--disable-pip"]
     code, out, err = run_cmd(args, cwd=root, timeout=180)
     if not out:
         log["tools_skipped"].append({"tool": "pip-audit", "reason": (err or "no output/network")[:150]}); return
@@ -262,36 +262,8 @@ def run_npm_audit(root, findings, log):
 
 
 def run_eslint(root, findings, log):
-    # only if a local eslint + config is present (running standalone is unreliable)
-    local = None
-    for dirpath, dirnames, filenames in os.walk(root):
-        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS and d != "node_modules"]
-        if dirpath.endswith(os.path.join("node_modules", ".bin")):
-            continue
-    # look for eslint binary under node_modules
-    for lock in find_files(root, {"package.json"}):
-        cand = os.path.join(os.path.dirname(lock), "node_modules", ".bin", "eslint")
-        if os.path.exists(cand):
-            local = cand
-            proj = os.path.dirname(lock)
-            break
-    if not local:
-        log["tools_skipped"].append({"tool": "eslint", "reason": "no local eslint install"}); return
-    code, out, err = run_cmd([local, "-f", "json", "."], cwd=proj, timeout=180)
-    if not out:
-        log["tools_skipped"].append({"tool": "eslint", "reason": err or "no output"}); return
-    try:
-        data = json.loads(out)
-    except Exception:
-        log["tools_skipped"].append({"tool": "eslint", "reason": "unparseable output"}); return
-    n = 0
-    for fileres in data:
-        for m in fileres.get("messages", []):
-            n += 1
-            sev = "high" if m.get("severity") == 2 else "low"
-            add(findings, "eslint", "quality", sev, m.get("ruleId"),
-                m.get("message"), rel(root, fileres.get("filePath", "")), m.get("line"))
-    log["tools_run"].append({"tool": "eslint", "findings": n})
+    # The eslint binary and config in the audited tree are untrusted code, so they are never run.
+    log["tools_skipped"].append({"tool": "eslint", "reason": "not run: binaries and configs in the audited tree are untrusted"})
 
 
 # ----------------- probe-only tools (never installed here) -----------------
