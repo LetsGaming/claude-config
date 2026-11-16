@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // SessionStart hook, matcher compact.
 // Re-anchors the session on the active plan, because compaction summarises it away.
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, realpathSync } from "node:fs";
 import { join, resolve, relative, isAbsolute } from "node:path";
 
 const MAX_INLINE = 7000; // The injection limit is 10000 characters.
@@ -37,10 +37,10 @@ function main() {
   try {
     rel = readFileSync(pointer, "utf8").trim();
     if (!rel) process.exit(0);
-    const plansDir = resolve(root, "docs", "plans");
-    const target = resolve(root, rel);
+    const plansDir = realpathSync(resolve(root, "docs", "plans"));
+    const target = realpathSync(resolve(root, rel));
     const inside = relative(plansDir, target);
-    if (inside.startsWith("..") || isAbsolute(inside) || !target.endsWith(".md")) process.exit(0);
+    if (!inside || inside.startsWith("..") || isAbsolute(inside) || !target.endsWith(".md")) process.exit(0);
     plan = readFileSync(target, "utf8");
   } catch {
     process.exit(0); // A missing or moved plan file is not worth an error.
