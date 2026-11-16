@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /ABSOLUTE/PATH/TO/.claude/hooks/save-plan.mjs"
+            "command": "node \"$HOME/.claude/hooks/save-plan.mjs\""
           }
         ]
       }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node /ABSOLUTE/PATH/TO/.claude/hooks/restore-plan.mjs"
+            "command": "node \"$HOME/.claude/hooks/restore-plan.mjs\""
           }
         ]
       }

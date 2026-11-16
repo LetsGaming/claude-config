@@ -111,7 +111,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$HOME/.claude/hooks/context-mode-cache-heal.mjs\""
+            "command": "\"C:/Program Files/nodejs/node.exe\" \"C:/Users/USER/.claude/hooks/context-mode-cache-heal.mjs\""
+          }
+        ]
+      },
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/restore-plan.mjs\""
           }
         ]
       }
@@ -123,6 +132,15 @@
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/no-em-dash.mjs\""
+          }
+        ]
+      },
+      {
+        "matcher": "ExitPlanMode",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/hooks/save-plan.mjs\""
           }
         ]
       }

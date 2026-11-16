@@ -38,6 +38,6 @@ Then:
 
 - Hook commands use `node "$HOME/.claude/hooks/..."`. Measured on Windows 11 (Git Bash): works. `node` must be on PATH.
 - `chrome-devtools-edge` is Windows only (fixed Edge path).
-- The plan hooks (`save-plan.mjs`, `restore-plan.mjs`) are not wired in `settings.json`. See `hooks/README.md`.
+- The plan hooks (`save-plan.mjs`, `restore-plan.mjs`) are wired in `settings.json`. Whether `PostToolUse` fires for `ExitPlanMode` is not yet confirmed in a real session. See `hooks/README.md`.
 - Plugins are not copied. `enabledPlugins` and `extraKnownMarketplaces` make Claude Code fetch them.
 - Not carried on purpose: `.credentials.json`, `.claude.json`, `projects/`, `history.jsonl`, `plugins/`, `skills/synced/`, `.remember/`, `plans/`.

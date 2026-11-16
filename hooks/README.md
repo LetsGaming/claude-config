@@ -17,8 +17,7 @@ Node, not bash, for three reasons: JSON parsing without `jq`, filename derivatio
 ## Install
 
 1. Copy the `.mjs` files to `~/.claude/hooks/`.
-2. Merge `settings-snippet.json` into `~/.claude/settings.json` under the existing `hooks` key, if you have one.
-3. Replace `/ABSOLUTE/PATH/TO/.claude/hooks/` with your real home path. `~` expansion in hook commands is not documented, so use an absolute path. On Windows use the full path with forward slashes.
+2. Merge `settings-snippet.json` into `~/.claude/settings.json` under the existing `hooks` key. The commands use `node "$HOME/.claude/hooks/..."`, which works on Linux and Windows (Git Bash).
 4. On Linux, make them executable is not needed, since `node <file>` is the command.
 
 `CLAUDE_PROJECT_DIR` is not used in the command string because these are global hooks and that variable points at the project, not your home directory. The scripts themselves do use it, to decide which project to write the plan into.
