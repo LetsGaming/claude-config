@@ -56,5 +56,4 @@ console.log(`
 Manual steps left:
   1. Run claude and log in with /login.
   2. Plugins install on first launch from settings.json. Wait for it to finish.
-  3. Run /mcp and authenticate graphify.
-  4. Set git identity: git config --global user.name and user.email.`);
+  3. Set git identity: git config --global user.name and user.email.`);

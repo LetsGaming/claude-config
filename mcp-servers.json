@@ -2,15 +2,25 @@
   "playwright-edge": {
     "type": "stdio",
     "command": "npx",
-    "args": ["@playwright/mcp@latest", "--browser", "msedge"]
+    "args": [
+      "@playwright/mcp@latest",
+      "--browser",
+      "msedge"
+    ]
   },
   "playwright-firefox": {
     "type": "stdio",
     "command": "npx",
-    "args": ["@playwright/mcp@latest", "--browser", "firefox"]
+    "args": [
+      "@playwright/mcp@latest",
+      "--browser",
+      "firefox"
+    ]
   },
   "chrome-devtools-edge": {
-    "platforms": ["win32"],
+    "platforms": [
+      "win32"
+    ],
     "type": "stdio",
     "command": "npx",
     "args": [
@@ -18,9 +28,5 @@
       "--executablePath",
       "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
     ]
-  },
-  "graphify": {
-    "type": "http",
-    "url": "https://api.graphify.com/mcp"
   }
 }

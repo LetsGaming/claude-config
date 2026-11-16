@@ -33,7 +33,6 @@ Then:
 
 1. Run `claude` and log in with `/login`.
 2. Wait for the plugins to install on first launch.
-3. Run `/mcp` and authenticate `graphify`.
 
 ## Notes
 
