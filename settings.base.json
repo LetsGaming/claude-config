@@ -21,18 +21,14 @@
     "superpowers:requesting-code-review": "off",
     "superpowers:verification-before-completion": "off",
     "superpowers:writing-skills": "off",
-    "claude-md-management:revise-claude-md": "off",
-    "claude-md-management:claude-md-improver": "off",
     "remember:doctor": "off",
     "remember:remember": "off",
-    "skill-creator:skill-creator": "off",
     "chrome-devtools-mcp:a11y-debugging": "off",
     "chrome-devtools-mcp:chrome-devtools": "off",
     "chrome-devtools-mcp:chrome-devtools-cli": "off",
     "chrome-devtools-mcp:cookie-debugging": "off",
     "chrome-devtools-mcp:debug-optimize-lcp": "off",
     "chrome-devtools-mcp:memory-leak-debugging": "off",
-    "playground:playground": "off",
     "postman:ai-readiness": "off",
     "postman:api-discovery": "off",
     "postman:api-documentation": "off",
@@ -46,9 +42,6 @@
     "postman:flows": "off",
     "postman:performance-testing": "off",
     "postman:postman-mcp-server": "off",
-    "ui-theme-designer:ui-theme-designer-design-tokens": "off",
-    "ui-theme-designer:ui-theme-designer-help": "off",
-    "superdesign:superdesign": "off",
     "claude-mem:agent-cost-report": "off",
     "claude-mem:babysit": "off",
     "claude-mem:ccs-align": "off",
@@ -71,11 +64,6 @@
     "claude-mem:what-the": "off",
     "claude-mem:wowerpoint": "off",
     "deep-plan:deep-plan": "off",
-    "ponytail:ponytail-audit": "off",
-    "ponytail:ponytail-debt": "off",
-    "ponytail:ponytail-gain": "off",
-    "ponytail:ponytail-help": "off",
-    "ponytail:ponytail-review": "off",
     "context-mode:context-mode": "off",
     "context-mode:ctx-insight": "off",
     "context-mode:ctx-purge": "off",
@@ -137,77 +125,6 @@
         ]
       }
     ]
-  },
-  "enabledPlugins": {
-    "frontend-design@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": false,
-    "code-simplifier@claude-plugins-official": false,
-    "playwright@claude-plugins-official": true,
-    "github@claude-plugins-official": false,
-    "claude-md-management@claude-plugins-official": false,
-    "security-guidance@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": false,
-    "claude-code-setup@claude-plugins-official": true,
-    "chrome-devtools-mcp@claude-plugins-official": true,
-    "playground@claude-plugins-official": false,
-    "remember@claude-plugins-official": true,
-    "gitlab@claude-plugins-official": false,
-    "postman@claude-plugins-official": true,
-    "data-engineering@claude-plugins-official": false,
-    "claude-security@claude-plugins-official": true,
-    "browser-use@claude-plugins-official": false,
-    "ui-theme-designer@claude-plugins-official": false,
-    "superdesign@claude-plugins-official": false,
-    "impeccable@impeccable": true,
-    "claude-mem@thedotmack": true,
-    "deep-plan@piercelamb-plugins": true,
-    "context-mode@context-mode": true,
-    "ruflo-adr@ruflo": false,
-    "ruflo-agent@ruflo": false,
-    "ruflo-core@ruflo": false,
-    "ruflo-autopilot@ruflo": false,
-    "ruflo-browser@ruflo": false,
-    "ruflo-cost-tracker@ruflo": false
-  },
-  "extraKnownMarketplaces": {
-    "impeccable": {
-      "source": {
-        "source": "github",
-        "repo": "pbakaus/impeccable"
-      }
-    },
-    "thedotmack": {
-      "source": {
-        "source": "github",
-        "repo": "thedotmack/claude-mem"
-      }
-    },
-    "piercelamb-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "piercelamb/deep-plan"
-      }
-    },
-    "ponytail": {
-      "source": {
-        "source": "github",
-        "repo": "DietrichGebert/ponytail"
-      }
-    },
-    "context-mode": {
-      "source": {
-        "source": "github",
-        "repo": "mksglu/context-mode"
-      }
-    },
-    "ruflo": {
-      "source": {
-        "source": "github",
-        "repo": "ruvnet/ruflo"
-      }
-    }
   },
   "effortLevel": "medium",
   "theme": "dark",
