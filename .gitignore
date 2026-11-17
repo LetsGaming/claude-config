@@ -6,7 +6,7 @@
 !/install.mjs
 !/mcp-servers.json
 !/settings.base.json
-!/rules/
+!/shared/
 !/lib/
 !/agents/
 !/commands/

@@ -56,11 +56,16 @@ if (changes.length === 0) {
 if (!dryRun && !needsAdoption) writeFileSync(statePath, `${JSON.stringify({ settings: base }, null, 2)}\n`);
 
 console.log('Instructions (CLAUDE.md)');
-const importLine = '@rules/base.md';
+const importLine = '@shared/base.md';
+const legacyImportLine = '@rules/base.md';
 const claudeMdPath = join(root, 'CLAUDE.md');
 const claudeMd = present(claudeMdPath) ? readFileSync(claudeMdPath, 'utf8') : undefined;
-if (claudeMd?.split(/\r?\n/).includes(importLine)) {
+const lines = claudeMd?.split(/\r?\n/) ?? [];
+if (lines.includes(importLine)) {
   console.log(`  keep  ${importLine}`);
+} else if (lines.includes(legacyImportLine)) {
+  console.log(`  swap  ${legacyImportLine} -> ${importLine}`);
+  if (!dryRun) writeFileSync(claudeMdPath, lines.map((line) => (line === legacyImportLine ? importLine : line)).join('\n'));
 } else {
   console.log(`  add   ${importLine}`);
   if (!dryRun) writeFileSync(claudeMdPath, `${importLine}\n${claudeMd === undefined ? '' : `\n${claudeMd}`}`);

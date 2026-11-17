@@ -6,7 +6,7 @@ Personal Claude Code setup. This repo is `~/.claude`.
 
 | Path | Holds |
 |---|---|
-| `rules/base.md` | Shared global instructions. Your `CLAUDE.md` imports it |
+| `shared/base.md` | Shared global instructions. Your `CLAUDE.md` imports it |
 | `settings.base.json` | Shared hooks, env, model, plugin list, marketplaces, skill overrides. `install.mjs` merges it into your `settings.json` |
 | `agents/`, `commands/`, `hooks/`, `tools/`, `_templates/` | Subagents, slash commands, hook scripts, helper scripts |
 | `skills/` | Own skills (real directories) |
@@ -59,7 +59,7 @@ node install.mjs
 You do not need a fork. Change your local files and pull as often as you like.
 
 - **Settings:** edit `~/.claude/settings.json` freely, or let Claude Code change it. `install.mjs` merges `settings.base.json` into it and prints every key it changes, with these rules: a value you changed is kept, a value you never touched follows the repo, a key you removed stays removed, and new keys from the repo are added. Arrays (such as a hook list) count as one value: if you edit one, it stops following the repo.
-- **Instructions:** put your own rules in `~/.claude/CLAUDE.md`. The first line, `@rules/base.md`, pulls in the shared rules. `install.mjs` adds that line if it is missing.
+- **Instructions:** put your own rules in `~/.claude/CLAUDE.md`. The first line, `@shared/base.md`, pulls in the shared rules. `install.mjs` adds that line if it is missing. If `~/.claude/CLAUDE.md` does not exist, it creates it with only that line. The folder is called `shared/` and not `rules/` on purpose: Claude Code loads `~/.claude/rules/` by itself, which could load the rules twice. To opt out of the shared rules, delete the line.
 - **More skills:** list them in `skills.local.json`, in the same format as `skills.json`.
 - **More MCP servers:** add them with `claude mcp add`. `install.mjs` never removes servers.
 - **Keep your files out of tracked paths:** git only conflicts with files it tracks. Do not edit the files under `skills/`, `hooks/`, `agents/`, `commands/`, `tools/` or `lib/`. Copy them under a new name instead. New files in those folders do not conflict with a pull unless the repo adds one with the same name.
