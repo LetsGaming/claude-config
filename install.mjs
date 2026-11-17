@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 // Applies the shared base files to the local setup and restores what git cannot carry.
 // settings.json and CLAUDE.md stay local: the base is merged in, never overwritten.
-// Usage: node install.mjs [--dry-run]
+// Usage: node install.mjs [--dry-run] [--adopt-base]
 import { copyFileSync, lstatSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir, platform } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { mergeSettings } from './lib/merge.mjs';
+import { changedPaths, mergeSettings } from './lib/merge.mjs';
 
 const dryRun = process.argv.includes('--dry-run');
+const adoptBase = process.argv.includes('--adopt-base');
 const root = dirname(fileURLToPath(import.meta.url));
 const expected = join(homedir(), '.claude');
 
@@ -34,17 +35,25 @@ const base = readJson(join(root, 'settings.base.json'));
 const statePath = join(root, '.install-state.json');
 const settingsPath = join(root, 'settings.json');
 const current = readJson(settingsPath);
-const merged = mergeSettings(base, readJson(statePath)?.settings, current);
-if (JSON.stringify(merged) === JSON.stringify(current)) {
+const previous = readJson(statePath)?.settings;
+const merged = mergeSettings(base, previous, current);
+const changes = changedPaths(current, merged);
+const needsAdoption = current !== undefined && previous === undefined && changes.length > 0 && !adoptBase;
+if (changes.length === 0) {
   console.log('  keep  settings.json');
+} else if (needsAdoption) {
+  console.log('  No install state found, so settings.json is left alone. The base would add:');
+  for (const path of changes) console.log(`    ${path}`);
+  console.log('  Review the list. Run node install.mjs --adopt-base to add it.');
 } else {
   console.log(`  ${current ? 'merge' : 'add  '} settings.json`);
+  for (const path of changes) console.log(`    ${path}`);
   if (!dryRun) {
     if (current) copyFileSync(settingsPath, `${settingsPath}.bak`);
     writeFileSync(settingsPath, `${JSON.stringify(merged, null, 2)}\n`);
   }
 }
-if (!dryRun) writeFileSync(statePath, `${JSON.stringify({ settings: base }, null, 2)}\n`);
+if (!dryRun && !needsAdoption) writeFileSync(statePath, `${JSON.stringify({ settings: base }, null, 2)}\n`);
 
 console.log('Instructions (CLAUDE.md)');
 const importLine = '@rules/base.md';

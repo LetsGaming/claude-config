@@ -30,6 +30,8 @@ git checkout -f -B main origin/main
 node install.mjs
 ```
 
+If you already have a `~/.claude/settings.json`, `install.mjs` does not touch it on the first run. It lists the keys the base would add. Check the list, then run `node install.mjs --adopt-base`. Your own values are kept either way.
+
 Then:
 
 1. Run `claude` and log in with `/login`.
@@ -56,7 +58,7 @@ node install.mjs
 
 You do not need a fork. Change your local files and pull as often as you like.
 
-- **Settings:** edit `~/.claude/settings.json` freely, or let Claude Code change it. `install.mjs` merges `settings.base.json` into it with these rules: a value you changed is kept, a value you never touched follows the repo, a key you removed stays removed, and new keys from the repo are added. Arrays (such as a hook list) count as one value: if you edit one, it stops following the repo.
+- **Settings:** edit `~/.claude/settings.json` freely, or let Claude Code change it. `install.mjs` merges `settings.base.json` into it and prints every key it changes, with these rules: a value you changed is kept, a value you never touched follows the repo, a key you removed stays removed, and new keys from the repo are added. Arrays (such as a hook list) count as one value: if you edit one, it stops following the repo.
 - **Instructions:** put your own rules in `~/.claude/CLAUDE.md`. The first line, `@rules/base.md`, pulls in the shared rules. `install.mjs` adds that line if it is missing.
 - **More skills:** list them in `skills.local.json`, in the same format as `skills.json`.
 - **More MCP servers:** add them with `claude mcp add`. `install.mjs` never removes servers.
