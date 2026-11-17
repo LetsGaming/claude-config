@@ -6,16 +6,16 @@ Personal Claude Code setup. This repo is `~/.claude`.
 
 | Path | Holds |
 |---|---|
-| `CLAUDE.md` | Global instructions |
-| `settings.json` | Hooks, env, model, plugin list, marketplaces, skill overrides |
+| `rules/base.md` | Shared global instructions. Your `CLAUDE.md` imports it |
+| `settings.base.json` | Shared hooks, env, model, plugin list, marketplaces, skill overrides. `install.mjs` merges it into your `settings.json` |
 | `agents/`, `commands/`, `hooks/`, `tools/`, `_templates/` | Subagents, slash commands, hook scripts, helper scripts |
 | `skills/` | Own skills (real directories) |
 | `skills.json` | Third-party skills as upstream repo plus names. `install.mjs` installs them from upstream |
 | `mcp-servers.json` | User-scope MCP servers. `install.mjs` registers them |
-| `install.mjs` | Restores what git cannot carry |
+| `install.mjs`, `lib/` | Applies the base files and restores what git cannot carry |
 | `LICENSE` | Terms of use. Read before reusing anything here |
 
-`.gitignore` is an allowlist. Credentials, transcripts, prompt history and caches are never tracked.
+`.gitignore` is an allowlist. Credentials, transcripts, prompt history and caches are never tracked. Your own `settings.json` and `CLAUDE.md` are not tracked either, so a pull never touches them.
 
 ## Set up a new machine
 
@@ -35,23 +35,34 @@ Then:
 1. Run `claude` and log in with `/login`.
 2. Wait for the plugins to install on first launch.
 
+Update later with:
+
+```sh
+cd ~/.claude
+git pull
+node install.mjs
+```
+
 ## Notes
 
 - Hook commands use `node "$HOME/.claude/hooks/..."`. Measured on Windows 11 (Git Bash): works. `node` must be on PATH.
 - `chrome-devtools-edge` is Windows only (fixed Edge path).
-- The plan hooks (`save-plan.mjs`, `restore-plan.mjs`) are wired in `settings.json`. Whether `PostToolUse` fires for `ExitPlanMode` is not yet confirmed in a real session. See `hooks/README.md`.
-- Plugins are not copied. `enabledPlugins` and `extraKnownMarketplaces` make Claude Code fetch them.
+- The plan hooks (`save-plan.mjs`, `restore-plan.mjs`) are wired in `settings.base.json`. Whether `PostToolUse` fires for `ExitPlanMode` is not yet confirmed in a real session. See `hooks/README.md`.
+- Plugins are not copied. `enabledPlugins` and `extraKnownMarketplaces` in the base settings make Claude Code fetch them.
 - Not carried on purpose: `.credentials.json`, `.claude.json`, `projects/`, `history.jsonl`, `plugins/`, `skills/synced/`, `.remember/`, `plans/`, and every `private/` folder (personal overlays).
 - Some skills read an optional `private/` overlay (for example `skills/human-writing-style/private/`). Without it they use their general rules.
 
 ## Make it your own
 
-You do not need a fork to use this setup. The commands above track this repo, and `git pull` brings updates. Checking out over an existing `~/.claude` overwrites its `CLAUDE.md` and `settings.json`, so back them up first.
+You do not need a fork. Change your local files and pull as often as you like.
 
-To change it for yourself:
+- **Settings:** edit `~/.claude/settings.json` freely, or let Claude Code change it. `install.mjs` merges `settings.base.json` into it with these rules: a value you changed is kept, a value you never touched follows the repo, a key you removed stays removed, and new keys from the repo are added. Arrays (such as a hook list) count as one value: if you edit one, it stops following the repo.
+- **Instructions:** put your own rules in `~/.claude/CLAUDE.md`. The first line, `@rules/base.md`, pulls in the shared rules. `install.mjs` adds that line if it is missing.
+- **More skills:** list them in `skills.local.json`, in the same format as `skills.json`.
+- **More MCP servers:** add them with `claude mcp add`. `install.mjs` never removes servers.
+- **Keep your files out of tracked paths:** git only conflicts with files it tracks. Do not edit the files under `skills/`, `hooks/`, `agents/`, `commands/`, `tools/` or `lib/`. Copy them under a new name instead. New files in those folders do not conflict with a pull unless the repo adds one with the same name.
 
-- **Keep tracking this repo:** edit `CLAUDE.md`, `settings.json` and `skills.json` locally. Git will report your edits as local changes, and a pull can conflict with them.
-- **Keep your changes in your own repo:** fork it, then run `git remote set-url origin https://github.com/<you>/<your-fork>.git`. Set `git config user.name` and `user.email` before you commit.
+If you want to share your changes or keep them in your own repo, fork it, then run `git remote set-url origin https://github.com/<you>/<your-fork>.git`. Set `git config user.name` and `user.email` before you commit.
 
 ## License
 
