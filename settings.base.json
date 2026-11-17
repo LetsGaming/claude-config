@@ -4,7 +4,9 @@
     "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet",
     "MCP_TOOL_TIMEOUT": "180000",
     "BASH_DEFAULT_TIMEOUT_MS": "120000",
-    "BASH_MAX_TIMEOUT_MS": "600000"
+    "BASH_MAX_TIMEOUT_MS": "600000",
+    "CLAUDE_MEM_TELEMETRY": "0",
+    "CLAUDE_MEM_TELEMETRY_ERRORS": "0"
   },
   "attribution": {
     "commit": "",
