@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Restores the parts of the Claude Code setup that git cannot carry.
 // Usage: node install.mjs [--dry-run]
-import { cpSync, existsSync, readdirSync, readFileSync } from 'node:fs';
+import { lstatSync, readFileSync } from 'node:fs';
 import { homedir, platform } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -16,16 +16,30 @@ if (resolve(root) !== resolve(expected)) {
   process.exit(1);
 }
 
-console.log('Skills');
-const vendored = join(root, 'vendored-skills');
-for (const name of readdirSync(vendored)) {
-  const target = join(root, 'skills', name);
-  if (existsSync(target)) {
-    console.log(`  keep  ${name}`);
-    continue;
+const present = (path) => {
+  try {
+    lstatSync(path);
+    return true;
+  } catch {
+    return false;
   }
-  console.log(`  copy  ${name}`);
-  if (!dryRun) cpSync(join(vendored, name), target, { recursive: true });
+};
+
+console.log('Skills (from skills.json)');
+const manifest = JSON.parse(readFileSync(join(root, 'skills.json'), 'utf8'));
+for (const { repo, skills } of manifest) {
+  const missing = skills.filter((name) => !present(join(root, 'skills', name)));
+  for (const name of skills) {
+    if (!missing.includes(name)) console.log(`  keep  ${name}`);
+  }
+  if (missing.length === 0) continue;
+  console.log(`  add   ${missing.join(', ')} (${repo})`);
+  if (dryRun) continue;
+  const added = spawnSync('npx', ['--yes', 'skills', 'add', repo, '--skill', ...missing, '--global', '--agent', 'claude-code', '--yes'], {
+    stdio: 'inherit',
+    shell: platform() === 'win32',
+  });
+  if (added.status !== 0) console.error(`  FAILED ${repo}`);
 }
 
 console.log('MCP servers (user scope)');
