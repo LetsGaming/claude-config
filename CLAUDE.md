@@ -62,7 +62,7 @@ Applies to analysis and recommendations, not to code output.
 
 - Conventional Commits without scope: `type: lowercase imperative summary`. Types: feat, fix, refactor, chore, docs, test, perf.
 - Commit normal work to main. Branch and PR for large rewrites.
-- Host new repos on GitHub. GitLab only when asked or for ExampleCorp (gitlab.example.com).
+- Host new repos on GitHub. GitLab only when asked.
 
 ## Subagents
 
