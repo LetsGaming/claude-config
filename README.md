@@ -24,7 +24,7 @@ Needs Git, Node and Claude Code. Run Claude Code once first, so `~/.claude` exis
 ```sh
 cd ~/.claude
 git init -b main
-git remote add origin https://github.com/<you>/<your-fork>.git
+git remote add origin https://github.com/LetsGaming/claude-config.git
 git fetch origin
 git checkout -f -B main origin/main
 node install.mjs
@@ -44,9 +44,14 @@ Then:
 - Not carried on purpose: `.credentials.json`, `.claude.json`, `projects/`, `history.jsonl`, `plugins/`, `skills/synced/`, `.remember/`, `plans/`, and every `private/` folder (personal overlays).
 - Some skills read an optional `private/` overlay (for example `skills/human-writing-style/private/`). Without it they use their general rules.
 
-## Use it yourself
+## Make it your own
 
-Fork the repo, then replace the remote in the setup commands with your fork. Edit `CLAUDE.md`, `settings.json` and `skills.json` to taste. Set `git config user.name` and `user.email` before you commit.
+You do not need a fork to use this setup. The commands above track this repo, and `git pull` brings updates. Checking out over an existing `~/.claude` overwrites its `CLAUDE.md` and `settings.json`, so back them up first.
+
+To change it for yourself:
+
+- **Keep tracking this repo:** edit `CLAUDE.md`, `settings.json` and `skills.json` locally. Git will report your edits as local changes, and a pull can conflict with them.
+- **Keep your changes in your own repo:** fork it, then run `git remote set-url origin https://github.com/<you>/<your-fork>.git`. Set `git config user.name` and `user.email` before you commit.
 
 ## License
 
