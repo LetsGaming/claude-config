@@ -1,0 +1,38 @@
+[
+  {
+    "marketplace": "claude-plugins-official",
+    "repo": "anthropics/claude-plugins-official",
+    "plugins": [
+      "chrome-devtools-mcp",
+      "claude-code-setup",
+      "claude-security",
+      "code-review",
+      "frontend-design",
+      "playwright",
+      "postman",
+      "remember",
+      "security-guidance",
+      "superpowers"
+    ]
+  },
+  {
+    "marketplace": "impeccable",
+    "repo": "pbakaus/impeccable",
+    "plugins": ["impeccable"]
+  },
+  {
+    "marketplace": "thedotmack",
+    "repo": "thedotmack/claude-mem",
+    "plugins": ["claude-mem"]
+  },
+  {
+    "marketplace": "piercelamb-plugins",
+    "repo": "piercelamb/deep-plan",
+    "plugins": ["deep-plan"]
+  },
+  {
+    "marketplace": "context-mode",
+    "repo": "mksglu/context-mode",
+    "plugins": ["context-mode"]
+  }
+]

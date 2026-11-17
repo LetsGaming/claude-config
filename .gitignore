@@ -13,6 +13,7 @@
 !/hooks/
 !/skills/
 !/skills.json
+!/plugins.json
 !/LICENSE
 !/docs/
 !/_templates/
@@ -34,7 +35,7 @@
 !/skills/improve-code-comments
 !/skills/isolated-dev-sessions
 
-# Local files: settings.json, CLAUDE.md, .install-state.json and skills.local.json are ignored by the allowlist above
+# Local files: settings.json, CLAUDE.md, .install-state.json, skills.local.json and plugins.local.json are ignored by the allowlist above
 
 # Local-only personal overlays
 private/
