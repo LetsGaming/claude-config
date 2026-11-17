@@ -5,8 +5,9 @@
 !/README.md
 !/install.mjs
 !/mcp-servers.json
-!/CLAUDE.md
-!/settings.json
+!/settings.base.json
+!/rules/
+!/lib/
 !/agents/
 !/commands/
 !/hooks/
@@ -32,6 +33,8 @@
 !/skills/image-triage
 !/skills/improve-code-comments
 !/skills/isolated-dev-sessions
+
+# Local files: settings.json, CLAUDE.md, .install-state.json and skills.local.json are ignored by the allowlist above
 
 # Local-only personal overlays
 private/

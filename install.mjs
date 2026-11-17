@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-// Restores the parts of the Claude Code setup that git cannot carry.
+// Applies the shared base files to the local setup and restores what git cannot carry.
+// settings.json and CLAUDE.md stay local: the base is merged in, never overwritten.
 // Usage: node install.mjs [--dry-run]
-import { lstatSync, readFileSync } from 'node:fs';
+import { copyFileSync, lstatSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir, platform } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { mergeSettings } from './lib/merge.mjs';
 
 const dryRun = process.argv.includes('--dry-run');
 const root = dirname(fileURLToPath(import.meta.url));
@@ -25,8 +27,38 @@ const present = (path) => {
   }
 };
 
-console.log('Skills (from skills.json)');
-const manifest = JSON.parse(readFileSync(join(root, 'skills.json'), 'utf8'));
+const readJson = (path) => (present(path) ? JSON.parse(readFileSync(path, 'utf8')) : undefined);
+
+console.log('Settings (settings.base.json into settings.json)');
+const base = readJson(join(root, 'settings.base.json'));
+const statePath = join(root, '.install-state.json');
+const settingsPath = join(root, 'settings.json');
+const current = readJson(settingsPath);
+const merged = mergeSettings(base, readJson(statePath)?.settings, current);
+if (JSON.stringify(merged) === JSON.stringify(current)) {
+  console.log('  keep  settings.json');
+} else {
+  console.log(`  ${current ? 'merge' : 'add  '} settings.json`);
+  if (!dryRun) {
+    if (current) copyFileSync(settingsPath, `${settingsPath}.bak`);
+    writeFileSync(settingsPath, `${JSON.stringify(merged, null, 2)}\n`);
+  }
+}
+if (!dryRun) writeFileSync(statePath, `${JSON.stringify({ settings: base }, null, 2)}\n`);
+
+console.log('Instructions (CLAUDE.md)');
+const importLine = '@rules/base.md';
+const claudeMdPath = join(root, 'CLAUDE.md');
+const claudeMd = present(claudeMdPath) ? readFileSync(claudeMdPath, 'utf8') : undefined;
+if (claudeMd?.split(/\r?\n/).includes(importLine)) {
+  console.log(`  keep  ${importLine}`);
+} else {
+  console.log(`  add   ${importLine}`);
+  if (!dryRun) writeFileSync(claudeMdPath, `${importLine}\n${claudeMd === undefined ? '' : `\n${claudeMd}`}`);
+}
+
+console.log('Skills (skills.json, skills.local.json)');
+const manifest = [...readJson(join(root, 'skills.json')), ...(readJson(join(root, 'skills.local.json')) ?? [])];
 for (const { repo, skills } of manifest) {
   const missing = skills.filter((name) => !present(join(root, 'skills', name)));
   for (const name of skills) {
