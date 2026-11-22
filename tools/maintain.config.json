@@ -1,0 +1,27 @@
+{
+  "sanitized": [
+    "shared/base.md",
+    "skills/code-standards/SKILL.md",
+    "skills/human-writing-style/SKILL.md",
+    "skills/isolated-dev-sessions/SKILL.md"
+  ],
+  "repoOnly": [
+    "_templates/LICENSE",
+    "skills/isolated-dev-sessions/templates/LICENSE",
+    "tools/maintain.mjs",
+    "tools/maintain.config.json"
+  ],
+  "ignoreLive": [
+    "hooks/context-mode-cache-heal.mjs",
+    "tools/restart-state/",
+    "skills/synced/"
+  ],
+  "ignoreHooks": [
+    "context-mode-cache-heal.mjs"
+  ],
+  "skipPlugins": [
+    "skill-kiln@skill-kiln"
+  ],
+  "ignoreMcp": [],
+  "privateTerms": []
+}

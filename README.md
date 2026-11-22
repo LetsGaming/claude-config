@@ -13,6 +13,7 @@ Personal Claude Code setup. This repo is `~/.claude`.
 | `skills.json` | Third-party skills as upstream repo plus names. `install.mjs` installs them from upstream |
 | `plugins.json` | Plugins as marketplace repo plus names. `install.mjs` adds the marketplaces and installs the plugins |
 | `mcp-servers.json` | User-scope MCP servers. `install.mjs` registers them |
+| `tools/maintain.mjs` | Shows how the repo differs from your live setup, and checks it before a commit |
 | `install.mjs`, `lib/` | Applies the base files and restores what git cannot carry |
 | `LICENSE` | Terms of use. Read before reusing anything here |
 
@@ -67,6 +68,25 @@ You do not need a fork. Change your local files and pull as often as you like.
 - **Keep your files out of tracked paths:** git only conflicts with files it tracks. Do not edit the files under `skills/`, `hooks/`, `agents/`, `commands/`, `tools/` or `lib/`. Copy them under a new name instead. New files in those folders do not conflict with a pull unless the repo adds one with the same name.
 
 If you want to share your changes or keep them in your own repo, fork it, then run `git remote set-url origin https://github.com/<you>/<your-fork>.git`. Set `git config user.name` and `user.email` before you commit.
+
+## Maintain it
+
+Run these in the repo folder:
+
+```sh
+node tools/maintain.mjs status   # how the repo differs from your live setup, read-only
+node tools/maintain.mjs check    # leak scan and tests, before every commit
+```
+
+`status` lists files that changed in live, skills and hooks the repo lacks, and differences in settings and manifests. `check` fails on a secret, your user path or email address, a private term or an em dash in a file git would commit, and it runs the tests.
+
+Some files differ from the live copy on purpose, because the live copy holds private data. They are listed under `sanitized` in `tools/maintain.config.json`. Do not copy them from live.
+
+Put your own entries in `maintain.local.json` (git ignores it): `privateTerms` are words that must never reach the repo, such as an employer or a project name, and `ignoreLive` lists live files the repo should never carry.
+
+```json
+{ "privateTerms": ["acme"], "ignoreLive": ["skills/my-local-skill/"] }
+```
 
 ## License
 
