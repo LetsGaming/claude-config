@@ -1,16 +1,18 @@
 #!/usr/bin/env node
 // Shows how this repo differs from the live setup, and checks it before a commit.
-// Usage: node tools/maintain.mjs [status|check] [--fetch]
+// Usage: node tools/maintain.mjs [status|check|sync] [--fetch] [--dry-run]
 import { homedir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { compareFiles, leakScan, liveOnly, loadConfig, manifestDrift, manifestNames, readJson, repoFiles, repoState, settingsDrift } from '../lib/maintain.mjs';
+import { compareFiles, leakScan, liveOnly, loadConfig, manifestDrift, manifestNames, readJson, repoFiles, repoState, settingsDrift, syncFiles } from '../lib/maintain.mjs';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const live = process.env.CLAUDE_HOME || join(homedir(), '.claude');
 const [command = 'status'] = process.argv.slice(2).filter((arg) => !arg.startsWith('--'));
 const fetch = process.argv.includes('--fetch');
+const dryRun = process.argv.includes('--dry-run');
+const username = homedir().split(/[\\/]/).pop();
 
 const say = (text = '') => console.log(text);
 const list = (rows, note = '') => rows.forEach((row) => say(`  ${row}${note}`));
@@ -92,7 +94,6 @@ function status() {
 
 function check() {
   let failed = false;
-  const username = homedir().split(/[\\/]/).pop();
   const email = git('config', 'user.email');
   const leaks = leakScan({ repo, files, config, username, email });
   say(`Leak scan: ${files.length} files, ${leaks.length} problem(s)`);
@@ -115,9 +116,29 @@ function check() {
   process.exitCode = failed ? 1 : 0;
 }
 
-const commands = { status, check };
+function sync() {
+  const rows = compareFiles({ repo, live, files, config });
+  const result = syncFiles({ repo, live, rows, config, username, email: git('config', 'user.email'), dryRun });
+  if (!result.changed.length) return say('Nothing to copy. No tracked file changed in live.');
+  if (dryRun) {
+    say('Would copy from live:');
+    return list(result.changed);
+  }
+  if (!result.kept) {
+    say('Nothing was kept. The leak scan found problems in the copied files:');
+    for (const leak of result.leaks) say('  ' + leak.file + ':' + leak.line + '  ' + leak.kind);
+    say('Remove the private data from the live file, or add the file to sanitized in tools/maintain.config.json.');
+    process.exitCode = 1;
+    return;
+  }
+  say('Copied ' + result.changed.length + ' file(s) from live:');
+  list(result.changed);
+  say('Review with git diff, then run check and commit.');
+}
+
+const commands = { status, check, sync };
 if (!commands[command]) {
-  say(`Unknown command: ${command}. Use status or check.`);
+  say(`Unknown command: ${command}. Use status, check or sync.`);
   process.exit(1);
 }
 commands[command]();

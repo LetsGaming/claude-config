@@ -3,7 +3,9 @@
     "shared/base.md",
     "skills/code-standards/SKILL.md",
     "skills/human-writing-style/SKILL.md",
-    "skills/isolated-dev-sessions/SKILL.md"
+    "skills/isolated-dev-sessions/SKILL.md",
+    "skills/human-writing-style/references/patterns.md",
+    "skills/human-writing-style/references/vocabulary.md"
   ],
   "repoOnly": [
     "_templates/LICENSE",

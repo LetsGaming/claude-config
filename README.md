@@ -76,11 +76,14 @@ Run these in the repo folder:
 ```sh
 node tools/maintain.mjs status   # how the repo differs from your live setup, read-only
 node tools/maintain.mjs check    # leak scan and tests, before every commit
+node tools/maintain.mjs sync     # copy files that changed in live into the repo (--dry-run to preview)
 ```
 
-`status` lists files that changed in live, skills and hooks the repo lacks, and differences in settings and manifests. `check` fails on a secret, your user path or email address, a private term or an em dash in a file git would commit, and it runs the tests.
+`status` lists files that changed in live, skills and hooks the repo lacks, and differences in settings and manifests. `check` fails on a secret, your user path or email address, a private term or an em dash in a file git would commit, and it runs the tests. `sync` copies only files marked changed in live. It runs the leak scan on the copies and puts every file back if the scan finds anything. It never commits.
 
-Some files differ from the live copy on purpose, because the live copy holds private data. They are listed under `sanitized` in `tools/maintain.config.json`. Do not copy them from live.
+A normal round: `status`, `sync`, `git diff`, `check`, commit.
+
+Some files differ from the live copy on purpose, because the live copy holds private data or breaks a rule of this repo. They are listed under `sanitized` in `tools/maintain.config.json`. Do not copy them from live.
 
 Put your own entries in `maintain.local.json` (git ignores it): `privateTerms` are words that must never reach the repo, such as an employer or a project name, and `ignoreLive` lists live files the repo should never carry.
 
