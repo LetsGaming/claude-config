@@ -1,4 +1,4 @@
-# Vocabulary reference — AI-overused words and phrases
+# Vocabulary reference: AI-overused words and phrases
 
 ## How to use this file
 
@@ -25,18 +25,18 @@ The overused set also shifts over time, so match the era you're checking against
   testament, valuable, vibrant.
 - **Mid-2024–mid-2025 (GPT-4o):** align with, bolstered, crucial, emphasizing, enhance, enduring,
   fostering, highlighting, pivotal, showcasing, underscore, vibrant.
-- **Mid-2025 on (GPT-5):** emphasizing, enhance, highlighting, showcasing — plus the whole
+- **Mid-2025 on (GPT-5):** emphasizing, enhance, highlighting, showcasing, plus the whole
   notability/attribution cluster (independent coverage, trade publications, active social media
   presence, profiled in). "delve" dropped off sharply after 2024, so its presence now points to older
   output or a smaller/derivative model.
-- **Grok is idiosyncratic:** overuses pseudo-scientific words — causal, empirical, correlate — and
+- **Grok is idiosyncratic:** overuses pseudo-scientific words (causal, empirical, correlate) and
   still leans on "underscore" as of 2026.
 
 ---
 
 ## English
 
-### Hard ban — overused across eras
+### Hard ban: overused across eras
 
 | Avoid | Replace with |
 |---|---|
@@ -47,13 +47,13 @@ The overused set also shifts over time, so match the era you're checking against
 | underscore / underscores (figurative) | shows, confirms, reveals, makes clear |
 | highlight (as verb meaning "emphasize") | show, reveal, point to, note |
 | showcase | show, demonstrate, display |
-| pivotal | key, decisive — or be specific about *why* |
+| pivotal | key, decisive, or be specific about *why* |
 | crucial | important, necessary, required |
-| vibrant | lively, busy, active — or be specific |
+| vibrant | lively, busy, active, or be specific |
 | foster / fostering | build, encourage, support, create |
 | garner | win, earn, attract, get |
 | bolster | strengthen, support, reinforce |
-| meticulous / meticulously | careful, thorough — or cut it |
+| meticulous / meticulously | careful, thorough, or cut it |
 | intricate / intricacies | complex, detail, specifics of |
 | interplay | relationship, interaction, tension between |
 | enduring | lasting, ongoing, persistent |
@@ -63,7 +63,7 @@ The overused set also shifts over time, so match the era you're checking against
 | focal point | centre, focus |
 | boasts (meaning "has") | has, includes |
 
-### Hard ban — significance / legacy boilerplate
+### Hard ban: significance / legacy boilerplate
 
 | Avoid | Notes |
 |---|---|
@@ -79,7 +79,7 @@ The overused set also shifts over time, so match the era you're checking against
 | represents a shift | say what changed, concretely |
 | key turning point | rewrite; specify what changed and when |
 
-### Hard ban — notability / attribution cluster (current-era tell)
+### Hard ban: notability / attribution cluster (current-era tell)
 
 | Avoid | Notes |
 |---|---|
@@ -90,7 +90,7 @@ The overused set also shifts over time, so match the era you're checking against
 | profiled in / featured in (as a notability claim) | summarize the coverage instead |
 | significant, substantial, secondary coverage | don't assert it; demonstrate it |
 
-### Caution — avoid dense clusters
+### Caution: avoid dense clusters
 
 additionally / moreover (sentence-openers), align with, boasts, crucial, emphasizing, enhance, key
 (adjective), meticulous, notably, pivotal, showcase, vibrant, valuable.
@@ -107,7 +107,7 @@ critics of relying on "speculation" about writing style.
 
 ## German
 
-### Hard ban — überstrapazierte KI-Formulierungen
+### Hard ban: überstrapazierte KI-Formulierungen
 
 | Vermeiden | Alternative |
 |---|---|
@@ -161,7 +161,7 @@ angesichts der wachsenden Herausforderungen, trotz dieser Herausforderungen.
 | un testimonio de | prueba de, ejemplo de |
 | en el cambiante panorama de | en el contexto actual de |
 | destaca la relevancia | (mostrar la relevancia con hechos) |
-| fomenta | apoya, impulsa, crea — o ser específico |
+| fomenta | apoya, impulsa, crea, o ser específico |
 | un hito importante | (fecha y hecho concreto) |
 | enriquece | (¿cómo, exactamente?) |
 | arraigado en | históricamente vinculado a, propio de |
@@ -173,5 +173,5 @@ angesichts der wachsenden Herausforderungen, trotz dieser Herausforderungen.
 The pattern is identical everywhere: abstract nouns of importance, participial significance tags
 (-ing / -ant / -ando), notability assertions, and challenge-outlook endings. Apply the English test:
 would this sentence stay true of almost any subject after a one-word swap? If yes, rewrite it. And
-remember the American-English default — a text whose spelling variety doesn't match the author's
+remember the American-English default: a text whose spelling variety doesn't match the author's
 region or the topic's national ties is a mild additional signal.

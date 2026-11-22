@@ -6,7 +6,7 @@ description: >
   writing, not default LLM output. Triggers: "make this sound human", "rewrite this more naturally",
   "so it doesn't sound like AI", "avoid AI tells / clichés", "less robotic", or any original writing
   where quality matters. Also trigger to judge whether text is AI-generated ("is this AI?", "does this
-  read as AI") — see the detection section. Also trigger for any language other than English; the
+  read as AI"); see the detection section. Also trigger for any language other than English; the
   structural patterns carry across languages. Finally, trigger for the user's own voice ("in my
   voice/style", "wie ich schreiben würde", "schreib das für mich", "sound like me") and before
   drafting any first-person message, email, chat, post, or doc on their behalf: apply the
@@ -16,7 +16,7 @@ description: >
 # Human writing style
 
 Most "AI tells" are symptoms, not the disease. The two things that actually make writing read as
-machine-made are (1) no concrete specifics and (2) no visible thinking — sentences that sound fine
+machine-made are (1) no concrete specifics and (2) no visible thinking: sentences that sound fine
 but carry no information and don't follow from each other. Fix those and the surface tells mostly
 disappear on their own. Swap the flagged words without fixing the substance and the text still reads
 as AI to anyone reading for content, and you add new artifacts on top.
@@ -28,17 +28,17 @@ writing with enough substance and specificity that there is nothing to detect.
 
 There are two ways to fail:
 
-- **Under-correction** — leaving the standard patterns in: fake significance, weasel attribution,
+- **Under-correction**: leaving the standard patterns in: fake significance, weasel attribution,
   challenge-and-outlook filler, hedged non-answers, tourism-brochure adjectives.
-- **Over-correction** — stripping every em dash, chopping every sentence into fragments, and larding
+- **Over-correction**: stripping every em dash, chopping every sentence into fragments, and larding
   in performative opinions ("honestly, I don't know how to feel about this") to seem human. This is
-  its own tell, and it ruins anything that needs a neutral register — documentation, reference
+  its own tell, and it ruins anything that needs a neutral register: documentation, reference
   writing, technical prose. The "Humanizer" plug-in that told Claude to "have opinions, react to
   facts" is the canonical over-correction: fine for a personal essay, actively wrong for a spec.
 
 Aim for the middle: prose that says something true and specific in an unforced voice.
 
-## Before you start — whose voice?
+## Before you start: whose voice?
 
 Decide this first, because it changes which rules win:
 
@@ -52,16 +52,16 @@ Decide this first, because it changes which rules win:
 If you're unsure which mode applies, look at who the text is *from*. First-person writing the user
 will send as themselves is personal-voice. Third-party or neutral deliverables are baseline-only.
 
-## Step 1 — Language
+## Step 1: Language
 
 Write in whatever language the user specifies or is already using. Every rule below is
 language-independent. The overused vocabulary differs by language (see `references/vocabulary.md`),
-but the structural patterns — importance-signalling, participial significance tags,
-challenge-outlook endings, over-attribution — appear the same way everywhere. One extra check for
+but the structural patterns (importance-signalling, participial significance tags,
+challenge-outlook endings, over-attribution) appear the same way everywhere. One extra check for
 non-English: many models default to American English and to a formal register regardless of prompt,
 so match the variety and register the topic and author actually call for.
 
-## Step 2 — The reliable fixes
+## Step 2: The reliable fixes
 
 These patterns are strongly tied to LLM output and almost never to careful human writing. Cutting
 them makes the text better *and* removes genuine tells. Full detail with examples in
@@ -74,7 +74,7 @@ them makes the text better *and* removes genuine tells. Full detail with example
   ongoing initiatives, X continues to thrive." Either write real analysis with specifics and sources,
   or delete it.
 - **Name your authority.** Replace "experts argue / observers note / several studies suggest (then
-  one citation)" with the actual person, study, or number — or cut the claim.
+  one citation)" with the actual person, study, or number, or cut the claim.
 - **Don't assert notability, show it.** "Has been featured in national and regional outlets" /
   "maintains an active social media presence" says nothing. Summarize what the sources *said*. This
   over-attribution cluster is the freshest tell in newer models, so watch for it closely.
@@ -82,13 +82,13 @@ them makes the text better *and* removes genuine tells. Full detail with example
   / "keeps personal details private" is speculation dressed as fact. If information is missing, say so
   or omit the section.
 - **Prefer plain copulas.** "serves as a / stands as a / marks a / represents a" where the meaning is
-  just "is a." Not an absolute — "serves as" is sometimes exactly right — but the reflexive swap away
+  just "is a." Not an absolute ("serves as" is sometimes exactly right), but the reflexive swap away
   from "is" is a strong marker.
 - **Be specific instead of promotional.** Replace "nestled in the breathtaking highlands, offering a
   vibrant cultural scene" with the actual streets, buildings, numbers, events. Let the reader draw the
   conclusion.
 
-## Step 3 — The substance pass
+## Step 3: The substance pass
 
 This is the part that separates human writing from de-clichéd AI writing, and it is what most
 "humanizer" advice ignores. Read the draft for *content*, not cadence, and check:
@@ -112,11 +112,11 @@ This is the part that separates human writing from de-clichéd AI writing, and i
   messier and more concrete.
 
 The test from an editor who works on this daily: genuinely AI-generated prose is hard to edit because
-"every element is equally off" — tone, word choice, structure, and facts are all slightly wrong at
+"every element is equally off": tone, word choice, structure, and facts are all slightly wrong at
 once, so there's nothing to leave intact. If your draft feels like that, don't polish it; rewrite it
 with real content.
 
-## Step 4 — Weak signals: leave them alone
+## Step 4: Weak signals: leave them alone
 
 These get called "AI tells" constantly, but skilled writers, non-native speakers, neurodivergent
 writers, and anyone typing on iOS or macOS trigger all of them. Do not mechanically strip them, and
@@ -137,9 +137,9 @@ do not treat their presence as evidence of AI:
 
 Removing these produces the over-corrected, choppy, opinion-larded voice that is itself detectable.
 The goal is natural prose, not the absence of punctuation. Note too that some newer models now
-*suppress* em dashes on purpose — so their absence is not evidence of human authorship either.
+*suppress* em dashes on purpose, so their absence is not evidence of human authorship either.
 
-## Step 5 — Format and markup
+## Step 5: Format and markup
 
 Distinguish real artifacts from cosmetics.
 
@@ -157,14 +157,14 @@ Fix (these are near-proof of unedited LLM output):
 Leave alone: em dashes, curly quotes, semicolons, and formatting that a normal careful writer would
 produce on the target platform.
 
-## Step 6 — Self-check before delivering
+## Step 6: Self-check before delivering
 
 Run one pass and fix any of these:
 
 1. A significance `-ing` tag, a challenge-outlook ending, or a notability/over-attribution sentence.
 2. Vague authority ("experts", "studies") instead of a named source.
 3. A knowledge-gap hedge presenting speculation as fact.
-4. A sentence that would survive a subject swap — i.e. carries no specific information.
+4. A sentence that would survive a subject swap, i.e. carries no specific information.
 5. A restated point, or a list item added only to reach three.
 6. A dense cluster of vocabulary from `references/vocabulary.md` (one word is fine; a pile is a tell).
 7. Markdown or machine artifacts in a target that shouldn't have them.
@@ -183,20 +183,20 @@ drafting in the user's voice. The overlay wins wherever it touches the same rule
 
 When the user wants a judgment on whether text is AI-generated, be honest about what does and doesn't
 work. The short version: you cannot prove it from style, and confident accusations based on style
-harm real people — disproportionately non-native English speakers and neurodivergent writers.
+harm real people, disproportionately non-native English speakers and neurodivergent writers.
 
 **Detectors don't work.** GPTZero, Turnitin's AI checker, Winston, and similar tools have high error
 rates. Turnitin itself admits a false-positive floor; detectors have flagged the US Constitution and
 passages of the Bible as AI; false-positive rates for non-native English writers run as high as ~70%.
 A high "percent AI" score is not evidence. Never accuse anyone on the strength of a detector.
 
-**Humans are near chance, too — unless they're heavy LLM users.** People who use LLMs constantly reach
+**Humans are near chance, too, unless they're heavy LLM users.** People who use LLMs constantly reach
 roughly 90% accuracy on flagged articles, which still means about one in ten of their accusations is
 a false positive. Casual readers do barely better than a coin flip in both directions. So calibrate
 your confidence down, and hedge.
 
 **Surface features are weak priors at best.** Em dashes, curly quotes, formal tone, bullet lists,
-"not X but Y", perfect grammar — everything in Step 4 — produce false positives. They mean essentially
+"not X but Y", perfect grammar (everything in Step 4) produce false positives. They mean essentially
 nothing on their own.
 
 What actually carries signal, roughly in order:
@@ -241,5 +241,5 @@ Precision and a neutral voice are the point. The only relevant fixes are cutting
 significance; leave the register formal.
 
 **Creative / narrative.** Structural rules still apply (no fake profundity, no challenge-outlook
-endings), and the substance pass matters most — clichéd emotion and beats in the wrong place are the
+endings), and the substance pass matters most: clichéd emotion and beats in the wrong place are the
 giveaway. The vocabulary list is a guide here, not a hard constraint.

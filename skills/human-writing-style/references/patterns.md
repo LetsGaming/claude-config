@@ -6,7 +6,7 @@ which are only weak priors. "Reliable" = strongly tied to LLM output, rare in ca
 
 ---
 
-## A. Reliable structural tells — fix these
+## A. Reliable structural tells: fix these
 
 ### A1. The significance tag  (reliable)
 
@@ -33,7 +33,7 @@ content is filler. This is about the rigid formula, not the mention of a challen
 
 ### A3. Vague authority attribution  (reliable)
 
-Attributing a claim to an unnamed group to make it sound authoritative — or citing one source while
+Attributing a claim to an unnamed group to make it sound authoritative, or citing one source while
 implying many.
 
 - "Experts argue that..." / "Observers have noted..." / "Industry reports suggest..."
@@ -41,9 +41,9 @@ implying many.
 
 Fix: name the expert, cite the study with author and year, or cut the attribution and state the claim
 with an inline citation. Newer models attach these to *named* sources that don't actually support the
-claim ("Roger Ebert highlighted the lasting influence") — so verify the source says what's claimed.
+claim ("Roger Ebert highlighted the lasting influence"), so verify the source says what's claimed.
 
-### A4. Notability / over-attribution  (reliable — the current-era tell)
+### A4. Notability / over-attribution  (reliable; the current-era tell)
 
 Telling the reader the subject is notable instead of demonstrating it. This is the strongest marker
 in 2025-and-later output.
@@ -77,7 +77,7 @@ Tourism-guide or press-release tone sneaking into writing that should be neutral
 - "The company's commitment to excellence is evident in every product it delivers."
 - "With its vibrant cultural scene and natural beauty, X captivates residents and visitors alike."
 
-Fix: describe what is actually there — specific streets, buildings, products, events — and let the
+Fix: describe what is actually there (specific streets, buildings, products, events) and let the
 reader draw the conclusion. Note that older models were blatantly superlative ("the best"); newer ones
 are subtly positive, so the tell is softer now but still present.
 
@@ -91,7 +91,7 @@ meaning is simply "is a."
   building, completed in 1998."
 
 "Serves as" is occasionally the right verb. The tell is the *reflexive* avoidance of "is" across a
-whole document — one study found a >10% drop in "is/are" when GPT was asked to revise text.
+whole document: one study found a >10% drop in "is/are" when GPT was asked to revise text.
 
 ### A8. Ecosystem / conservation boilerplate  (reliable in biology writing)
 
@@ -114,7 +114,7 @@ standalone real-world entity.
 
 Fix: write a natural lead about the subject, not a dictionary definition of the page title.
 
-### A10. Meta-commentary and sign-offs  (reliable — near-proof)
+### A10. Meta-commentary and sign-offs  (reliable; near-proof)
 
 Any text that describes or frames the writing task instead of just doing it. This includes chatbot
 correspondence pasted in by accident.
@@ -128,7 +128,7 @@ Fix: produce the output only. No preamble, no sign-off, no framing.
 
 ---
 
-## B. Substance and coherence failures — the real giveaways
+## B. Substance and coherence failures: the real giveaways
 
 These matter more than any word choice. They are what makes AI text "equally off" throughout and
 nearly impossible to edit.
@@ -139,7 +139,7 @@ A sentence that stays true if you swap the subject for almost anything else. It 
 
 - "This development represents an important step in the evolving landscape of the industry."
 
-Fix: replace with something only true of this subject — a number, a name, a specific event.
+Fix: replace with something only true of this subject: a number, a name, a specific event.
 
 ### B2. Topic-linked but not logic-linked
 
@@ -157,12 +157,12 @@ Fix: say it once.
 
 ### B4. Rule-of-three padding
 
-Three adjectives, examples, or clauses — not because three is right, but because it's the default.
+Three adjectives, examples, or clauses: not because three is right, but because it's the default.
 Worse when the third item isn't actually true.
 
 - "The festival features music, art, and culture." / "She is intelligent, driven, and passionate."
 - Real-world tell: an app described as saving time "and reducing paperwork errors" when it has nothing
-  to do with paperwork — the third benefit was invented to fill the triad.
+  to do with paperwork; the third benefit was invented to fill the triad.
 
 Fix: use as many items as there actually are. One strong specific beats three vague ones.
 
@@ -177,13 +177,13 @@ unresolved.
 
 ---
 
-## C. Weak signals — do NOT mechanically strip, do NOT treat as proof
+## C. Weak signals: do NOT mechanically strip, do NOT treat as proof
 
 Common in careful human writing. Fix only when reflexive or clustered; never accuse on these alone.
 
 ### C1. The "not just X, but Y" parallelism  (weak)
 
-- "It's not just a museum — it's a living archive of collective memory."
+- "It's not just a museum: it's a living archive of collective memory."
 
 Overused, it reads as AI. Once, where the contrast is real, it's a normal rhetorical device. State
 the positive claim directly when the negative half adds nothing.
@@ -196,11 +196,11 @@ signals over-correction. Only avoid the formulaic spaced-em-dash-per-clause rhyt
 ### C3. Bullet lists, transition words, "perfect" prose  (weak)
 
 Fine in moderation. The AI version is the inline-header list ("• **Durability:** ...") and dense
-sentence-initial transition clusters — not lists or transitions as such.
+sentence-initial transition clusters, not lists or transitions as such.
 
 ---
 
-## D. Over-correction patterns — the opposite failure
+## D. Over-correction patterns: the opposite failure
 
 Introduced by trying too hard to "sound human." Each is its own tell.
 
