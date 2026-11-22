@@ -99,7 +99,6 @@ This repo does not contain third-party skills. `skills.json` points at them, and
 - [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)
 - [emilkowalski/skills](https://github.com/emilkowalski/skills)
 - [vercel-labs/skills](https://github.com/vercel-labs/skills)
-- [Leonxlnx/unlazy](https://github.com/Leonxlnx/unlazy)
 
 Plugins come from the marketplaces in `plugins.json` and are fetched by Claude Code. Each keeps its own license:
 

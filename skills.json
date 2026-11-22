@@ -37,9 +37,5 @@
   {
     "repo": "vercel-labs/skills",
     "skills": ["find-skills"]
-  },
-  {
-    "repo": "Leonxlnx/unlazy",
-    "skills": ["unlazy"]
   }
 ]
