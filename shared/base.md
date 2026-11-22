@@ -62,6 +62,7 @@ Applies to analysis and recommendations, not to code output.
 
 - Conventional Commits without scope: `type: lowercase imperative summary`. Types: feat, fix, refactor, chore, docs, test, perf.
 - Commit normal work to main. Branch and PR for large rewrites.
+- Never track, commit or push a CLAUDE.md file unless I say so. If a CLAUDE.md is already tracked in the repo, edit and commit it as usual.
 - Host new repos on GitHub. GitLab only when asked.
 
 ## Subagents
