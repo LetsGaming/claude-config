@@ -108,5 +108,4 @@ Plugins come from the marketplaces in `plugins.json` and are fetched by Claude C
 - [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official)
 - [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
 - [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem)
-- [piercelamb/deep-plan](https://github.com/piercelamb/deep-plan)
 - [mksglu/context-mode](https://github.com/mksglu/context-mode)

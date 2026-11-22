@@ -26,11 +26,6 @@
     "plugins": ["claude-mem"]
   },
   {
-    "marketplace": "piercelamb-plugins",
-    "repo": "piercelamb/deep-plan",
-    "plugins": ["deep-plan"]
-  },
-  {
     "marketplace": "context-mode",
     "repo": "mksglu/context-mode",
     "plugins": ["context-mode"]
