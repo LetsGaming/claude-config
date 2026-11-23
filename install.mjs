@@ -2,7 +2,7 @@
 // Applies the shared base files to the local setup and restores what git cannot carry.
 // settings.json and CLAUDE.md stay local: the base is merged in, never overwritten.
 // Run from any clone: outside ~/.claude it first turns ~/.claude into a work tree of this repo.
-// Usage: node install.mjs [--dry-run] [--adopt-base] [--yes]
+// Usage: node install.mjs [--dry-run] [--adopt-base] [--overwrite] [--yes]
 import { copyFileSync, lstatSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir, platform } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -10,10 +10,12 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { bootstrap } from './lib/bootstrap.mjs';
 import { changedPaths, mergeSettings } from './lib/merge.mjs';
+import { resetConfigLayer } from './lib/overwrite.mjs';
 import { planPlugins } from './lib/plugins.mjs';
 
 const dryRun = process.argv.includes('--dry-run');
 const adoptBase = process.argv.includes('--adopt-base');
+const overwrite = process.argv.includes('--overwrite');
 const root = dirname(fileURLToPath(import.meta.url));
 const expected = join(homedir(), '.claude');
 
@@ -31,6 +33,16 @@ if (resolve(root) !== resolve(expected)) {
   }
   const rerun = spawnSync(process.execPath, [join(expected, 'install.mjs'), ...process.argv.slice(2)], { stdio: 'inherit' });
   process.exit(rerun.status ?? 1);
+}
+
+if (overwrite) {
+  console.log('Overwrite (reset local settings.json and CLAUDE.md)');
+  try {
+    await resetConfigLayer({ root, dryRun, yes: process.argv.includes('--yes') });
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
 }
 
 const present = (path) => {

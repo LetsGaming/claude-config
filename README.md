@@ -31,6 +31,8 @@ node install.mjs
 
 The installer turns `~/.claude` into a git work tree of this repo, then continues from there. You can delete the clone afterwards. If `~/.claude` already holds files that the repo also tracks and that differ, the installer lists them, copies them to `~/.claude/backups/pre-bootstrap-<time>/` and asks before it replaces them. Pass `--yes` to skip the question, or `--dry-run` to only see the plan. Your own `settings.json`, `CLAUDE.md`, history and credentials are never touched by this step.
 
+To start from a clean config layer, run `node install.mjs --overwrite`. It prints what it will do and asks you to confirm. It moves `settings.json`, `CLAUDE.md` and `.install-state.json` to `~/.claude/backups/overwrite-<time>/`, then rebuilds them from the shared base. Your own settings are not carried over, so copy them back from the backup. History, sessions, credentials and plugins stay. `--yes` skips the question.
+
 If you already have a `~/.claude/settings.json`, `install.mjs` does not touch it on the first run. It lists the keys the base would add. Check the list, then run `node install.mjs --adopt-base`. Your own values are kept either way.
 
 Then:
