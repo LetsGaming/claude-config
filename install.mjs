@@ -10,7 +10,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { bootstrap } from './lib/bootstrap.mjs';
 import { changedPaths, mergeSettings } from './lib/merge.mjs';
-import { resetConfigLayer } from './lib/overwrite.mjs';
+import { resetSetup } from './lib/overwrite.mjs';
 import { planPlugins } from './lib/plugins.mjs';
 
 const dryRun = process.argv.includes('--dry-run');
@@ -36,9 +36,9 @@ if (resolve(root) !== resolve(expected)) {
 }
 
 if (overwrite) {
-  console.log('Overwrite (reset local settings.json and CLAUDE.md)');
+  console.log('Overwrite (archive and reset the whole Claude setup)');
   try {
-    await resetConfigLayer({ root, dryRun, yes: process.argv.includes('--yes') });
+    await resetSetup({ root, home: homedir(), dryRun, yes: process.argv.includes('--yes') });
   } catch (error) {
     console.error(error.message);
     process.exit(1);
