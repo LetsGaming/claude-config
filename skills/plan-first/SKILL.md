@@ -1,6 +1,6 @@
 ---
 name: plan-first
-description: Use at the start of any request that bundles more than one task, or whose steps depend on each other being researched and done in the right order, such as a migration, a refactor across files, a feature that needs investigation first, a deploy or release, or any "do A, then B, then C". Enter plan mode before touching anything. Use it even when the user does not say "plan", and even when the first step looks easy, because a wrong early step is what makes these tasks expensive. Skip it for a single edit, a question, a lookup, or a command the user spelled out.
+description: Use at the start of any request that bundles more than one task, or whose steps depend on each other being researched and done in the right order, such as a migration, a refactor across files, a rework or redesign after a failed check, a feature that needs investigation first, a deploy or release, or any "do A, then B, then C". Also use it when a short go-ahead ("option 1", "do it", "go with that") picks a multi-step piece of work: judge the work it names, not the length of the message, even deep in a long session where the next step feels obvious. Enter plan mode before touching anything. Use it even when the user does not say "plan", and even when the first step looks easy, because a wrong early step is what makes these tasks expensive. Skip it for a single edit, a question, a lookup, or a command the user spelled out.
 ---
 
 # Plan first
@@ -15,6 +15,7 @@ Enter plan mode if one or more of these holds:
 - **Research before action.** A later step depends on something not yet known: unfamiliar code, a version-specific API, how an external system behaves, which file owns a behavior.
 - **Order matters and a mistake is costly.** Database changes, renames across files, deploys, history rewrites, anything hard to undo.
 - **The user lists steps.** Numbered steps, "then", "after that", "once that works".
+- **A go-ahead for such work.** "Option 1", "do it" or "go with that" after a discussion is a request for whatever it points to. If that is a rework, a redesign, or anything that needs a rerun and a comparison, plan it. In a long session you already know the code, so the first step feels obvious. Distrust that feeling: a plan is how the user gets to correct the approach before the rework starts.
 
 Do not enter plan mode when:
 
