@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 // Applies the shared base files to the local setup and restores what git cannot carry.
 // settings.json and CLAUDE.md stay local: the base is merged in, never overwritten.
-// Usage: node install.mjs [--dry-run] [--adopt-base]
+// Run from any clone: outside ~/.claude it first turns ~/.claude into a work tree of this repo.
+// Usage: node install.mjs [--dry-run] [--adopt-base] [--yes]
 import { copyFileSync, lstatSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir, platform } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { bootstrap } from './lib/bootstrap.mjs';
 import { changedPaths, mergeSettings } from './lib/merge.mjs';
 import { planPlugins } from './lib/plugins.mjs';
 
@@ -16,8 +18,19 @@ const root = dirname(fileURLToPath(import.meta.url));
 const expected = join(homedir(), '.claude');
 
 if (resolve(root) !== resolve(expected)) {
-  console.error(`This repo must live at ${expected}. Found ${root}.`);
-  process.exit(1);
+  console.log(`Bootstrap (${root} into ${expected})`);
+  try {
+    await bootstrap({ root, target: expected, dryRun, yes: process.argv.includes('--yes') });
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
+  if (dryRun) {
+    console.log('Dry run: the install would continue from the target.');
+    process.exit(0);
+  }
+  const rerun = spawnSync(process.execPath, [join(expected, 'install.mjs'), ...process.argv.slice(2)], { stdio: 'inherit' });
+  process.exit(rerun.status ?? 1);
 }
 
 const present = (path) => {

@@ -21,16 +21,15 @@ Personal Claude Code setup. This repo is `~/.claude`.
 
 ## Set up a new machine
 
-Needs Git, Node and Claude Code. Run Claude Code once first, so `~/.claude` exists.
+Needs Git, Node and Claude Code. Clone the repo anywhere and run the installer:
 
 ```sh
-cd ~/.claude
-git init -b main
-git remote add origin https://github.com/LetsGaming/claude-config.git
-git fetch origin
-git checkout -f -B main origin/main
+git clone https://github.com/LetsGaming/claude-config.git
+cd claude-config
 node install.mjs
 ```
+
+The installer turns `~/.claude` into a git work tree of this repo, then continues from there. You can delete the clone afterwards. If `~/.claude` already holds files that the repo also tracks and that differ, the installer lists them, copies them to `~/.claude/backups/pre-bootstrap-<time>/` and asks before it replaces them. Pass `--yes` to skip the question, or `--dry-run` to only see the plan. Your own `settings.json`, `CLAUDE.md`, history and credentials are never touched by this step.
 
 If you already have a `~/.claude/settings.json`, `install.mjs` does not touch it on the first run. It lists the keys the base would add. Check the list, then run `node install.mjs --adopt-base`. Your own values are kept either way.
 
