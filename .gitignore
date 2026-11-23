@@ -34,6 +34,7 @@
 !/skills/image-triage
 !/skills/improve-code-comments
 !/skills/isolated-dev-sessions
+!/skills/plan-first
 
 # Local files: settings.json, CLAUDE.md, .install-state.json, skills.local.json and plugins.local.json are ignored by the allowlist above
 
