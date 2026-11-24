@@ -106,9 +106,7 @@ Custom license based on MIT. You may use, copy and modify it, including to build
 
 This repo does not contain third-party skills. `skills.json` points at them, and each keeps its own license (all MIT when checked):
 
-- [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)
 - [emilkowalski/skills](https://github.com/emilkowalski/skills)
-- [vercel-labs/skills](https://github.com/vercel-labs/skills)
 
 Plugins come from the marketplaces in `plugins.json` and are fetched by Claude Code. Each keeps its own license:
 

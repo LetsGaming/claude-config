@@ -1,41 +1,11 @@
 [
   {
-    "repo": "Leonxlnx/taste-skill",
-    "skills": [
-      "brandkit",
-      "design-taste-frontend",
-      "design-taste-frontend-v1",
-      "full-output-enforcement",
-      "gpt-taste",
-      "high-end-visual-design",
-      "image-to-code",
-      "imagegen-frontend-mobile",
-      "imagegen-frontend-web",
-      "industrial-brutalist-ui",
-      "minimalist-ui",
-      "redesign-existing-projects",
-      "stitch-design-taste"
-    ]
-  },
-  {
     "repo": "emilkowalski/skills",
     "skills": [
-      "animate",
-      "animate-expo",
-      "animation-vocabulary",
-      "apple-design",
-      "ask-sonner",
       "emil-design-eng",
-      "find-animation-opportunities",
-      "improve-animations",
       "pick-ui-library",
       "prototype",
-      "review-animations",
-      "write-swift"
+      "review-animations"
     ]
-  },
-  {
-    "repo": "vercel-labs/skills",
-    "skills": ["find-skills"]
   }
 ]

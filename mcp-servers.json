@@ -8,15 +8,6 @@
       "msedge"
     ]
   },
-  "playwright-firefox": {
-    "type": "stdio",
-    "command": "npx",
-    "args": [
-      "@playwright/mcp@latest",
-      "--browser",
-      "firefox"
-    ]
-  },
   "chrome-devtools-edge": {
     "platforms": [
       "win32"
